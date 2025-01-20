@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -138,7 +139,7 @@
             <li><a href="cart.html">Cart</a></li>
         </div>
         <div class="count">
-            <a href="./cart.html"><i class = "fa-solid fa-bag-shopping icon"></i></a>
+            <!-- <a href="./cart.html"><i class = "fa-solid fa-bag-shopping icon"></i></a> -->
             <!-- <span id="cart" style = "font-family: monospace; font-size: 2.1rem;">0</span> -->
         </div>
     </div>
@@ -177,6 +178,12 @@
                 quantity.innerText = el.quantity
                 quantity.className = "quantity"
 
+                let add = document.createElement("button")
+                add.innerHTML = `<i class="fa-solid fa-plus"></i>`
+                add.addEventListener("click", ()=>{
+                    quantityadd(i , quantity)
+                })
+
                 let dltbtn = document.createElement("button")
                 dltbtn.className = "dltbtn"
                 dltbtn.innerText = "Delete"
@@ -184,7 +191,7 @@
                     dltdata(i)
                 })
 
-                innerdiv.append(img,p,price,quantity,dltbtn)
+                innerdiv.append(img,p,price,add,quantity,dltbtn)
                 product.append(innerdiv)
             })
         }
@@ -203,5 +210,13 @@
         CartItem[index].quantity > 1 ? CartItem[index].quantity -= 1 : CartItem.splice(index,1)
         localStorage.setItem("Arraycart",JSON.stringify(CartItem))
         displaydata()
+    }
+
+    function quantityadd(index , qtyel){
+        let CartItem = JSON.parse(localStorage.getItem("Arraycart")) || []
+        CartItem[index].quantity += 1
+        localStorage.setItem("Arraycart",JSON.stringify(CartItem))
+
+        qtyel.innerText= CartItem[index].quantity
     }
 </script>

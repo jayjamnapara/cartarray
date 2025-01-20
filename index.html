@@ -182,9 +182,6 @@
             crtbtn.innerText = "Cart"
             crtbtn.addEventListener("click", () => {
                 quantity(el)
-                alert("you're item added in cart")
-                // Arraycart.push(el)
-                // localStorage.setItem("cart",JSON.stringify(Arraycart)) 
             })
 
             let dltbtn = document.createElement("button")
@@ -218,7 +215,8 @@
 
         if (existingProduct) {
             // If the product exists, increment its quantity
-            existingProduct.quantity += 1;
+            // existingProduct.quantity += 1;
+            alert("product already exits............!")
         } else {
             // If the product is new, set its quantity to 1 and push it to the cart
             el.quantity = 1;
@@ -242,6 +240,8 @@
         // Update the cart count display in the navbar
         cart.innerText = count;
     }
+
+    updateCartCount()
 
     function dltdata(index) {
         let product = JSON.parse(localStorage.getItem("product")) || [];
